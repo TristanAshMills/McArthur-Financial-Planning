@@ -216,3 +216,11 @@ The application has been strengthened against multiple categories of vulnerabili
 * Global JavaScript Scope Pollution
 
 While these client-side improvements significantly increase the application's security, additional production safeguards—such as HTTP security headers, server-side CSRF validation, authentication, logging, and rate limiting—should also be implemented for a complete defense-in-depth strategy.
+
+---
+
+Copyright © 2026 Tristan Ashley Mills
+
+All Rights Reserved.
+
+This source code, documentation, and associated files are the exclusive property of Tristan Ashley Mills. Unauthorized copying, reproduction, modification, distribution, or use of this project, in whole or in part, is strictly prohibited without prior written permission.
