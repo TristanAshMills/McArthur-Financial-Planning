@@ -8,7 +8,7 @@
     document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
     target.classList.add('active');
 
-    
+
     document.querySelectorAll('.navbar__links a').forEach(function (a) {
       a.classList.toggle('active', a.dataset.page === id);
     });
@@ -32,12 +32,16 @@
 
   // ─── MOBILE MENU ────────────────────────────────────────────
   var hamburgerBtn = document.getElementById('hamburger');
-  hamburgerBtn.addEventListener('click', function () {
-    document.getElementById('mobileMenu').classList.toggle('open');
-  });
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', function () {
+      var mobileMenu = document.getElementById('mobileMenu');
+      if (mobileMenu) mobileMenu.classList.toggle('open');
+    });
+  }
 
   function closeMobile() {
-    document.getElementById('mobileMenu').classList.remove('open');
+    var mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu) mobileMenu.classList.remove('open');
   }
 
   // ─── DROPDOWN (POPI) ────────────────────────────────────────
@@ -49,7 +53,9 @@
       document.querySelectorAll('.dropdown-menu').forEach(function (m) {
         if (m !== menu) m.style.display = 'none';
       });
-      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+      if (menu) {
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+      }
       return;
     }
     if (!e.target.closest('.nav-dropdown')) {
@@ -85,17 +91,25 @@
     var lastSubmitTime = 0;
 
     consultForm.addEventListener('submit', function (e) {
-      
+
       var honeypot = document.getElementById('companyWebsite');
       if (honeypot && honeypot.value.trim() !== '') {
         e.preventDefault();
         return;
       }
 
-     
+
       var now = Date.now();
       if (now - lastSubmitTime < 3000) {
         e.preventDefault();
+        return;
+      }
+
+      // \ hCaptcha check
+      var hCaptchaField = consultForm.querySelector('textarea[name=h-captcha-response]');
+      if (!hCaptchaField || !hCaptchaField.value) {
+        e.preventDefault();
+        alert('Please complete the captcha before submitting.');
         return;
       }
 
@@ -109,18 +123,21 @@
 
       var phoneEl = document.getElementById('phone');
       var phoneErr = document.getElementById('err-phone');
-      if (phoneEl.value.trim() !== '' && !/^[+0-9 ()-]{6,20}$/.test(phoneEl.value.trim())) {
-        phoneEl.classList.add('error');
-        phoneErr.classList.add('show');
-        valid = false;
-      } else {
-        phoneEl.classList.remove('error');
-        phoneErr.classList.remove('show');
+      if (phoneEl && phoneErr) {
+        if (phoneEl.value.trim() !== '' && !/^[+0-9 ()-]{6,20}$/.test(phoneEl.value.trim())) {
+          phoneEl.classList.add('error');
+          phoneErr.classList.add('show');
+          valid = false;
+        } else {
+          phoneEl.classList.remove('error');
+          phoneErr.classList.remove('show');
+        }
       }
 
       fields.forEach(function (f) {
         var el = document.getElementById(f.id);
         var err = document.getElementById(f.errId);
+        if (!el || !err) return;
         if (!f.check(el.value)) {
           el.classList.add('error');
           err.classList.add('show');
@@ -144,7 +161,9 @@
   // ─── NAVBAR SCROLL SHADOW ───────────────────────────────────
   window.addEventListener('scroll', function () {
     var nav = document.getElementById('navbar');
-    nav.style.boxShadow = window.scrollY > 20
-      ? '0 4px 24px rgba(0,0,0,.25)'
-      : 'none';
+    if (nav) {
+      nav.style.boxShadow = window.scrollY > 20
+        ? '0 4px 24px rgba(0,0,0,.25)'
+        : 'none';
+    }
   });

@@ -7,13 +7,13 @@
 <meta name="description" content="Independent financial planning and investment management in Cape Town, South Africa. We offer unbiased, personalized wealth strategies." />
 <meta http-equiv="Content-Security-Policy" content="
   default-src 'self';
-  script-src 'self';
-  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  script-src 'self' https://web3forms.com https://hcaptcha.com https://*.hcaptcha.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://hcaptcha.com https://*.hcaptcha.com;
   font-src 'self' https://fonts.gstatic.com;
   img-src 'self' data:;
-  frame-src https://www.google.com;
-  connect-src 'self' https://formspree.io;
-  form-action https://formspree.io;
+  frame-src https://www.google.com https://hcaptcha.com https://*.hcaptcha.com;
+  connect-src 'self' https://api.web3forms.com https://hcaptcha.com https://*.hcaptcha.com;
+  form-action https://api.web3forms.com;
   object-src 'none';
   base-uri 'self';
   upgrade-insecure-requests;
@@ -1898,58 +1898,62 @@
           <h3>Book a Consultation</h3>
           <p>Fill in the form below and we'll be in touch to arrange your complimentary initial meeting.</p>
 
-          <form id="consultForm" action="https://formspree.io/f/xbdqzkvy" method="POST" novalidate>
+          <form id="consultForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="firstName">First Name *</label>
-                <input type="text" id="firstName" name="firstName" placeholder="Andrew" maxlength="80" autocomplete="given-name" required />
-                <span class="form-error" id="err-firstName">Please enter your first name.</span>
-              </div>
+  <input type="hidden" name="access_key" value="fa61f459-b61b-4453-9ae8-28d271c74430">
 
-              <div class="form-group">
-                <label for="lastName">Last Name *</label>
-                <input type="text" id="lastName" name="lastName" placeholder="Botha" maxlength="80" autocomplete="family-name" required />
-                <span class="form-error" id="err-lastName">Please enter your last name.</span>
-              </div>
-            </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="firstName">First Name *</label>
+      <input type="text" id="firstName" name="firstName" placeholder="Andrew" maxlength="80" autocomplete="given-name" required />
+      <span class="form-error" id="err-firstName">Please enter your first name.</span>
+    </div>
 
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" name="email" placeholder="andrew@example.co.za" maxlength="254" autocomplete="email" required />
-              <span class="form-error" id="err-email">Please enter a valid email address.</span>
-            </div>
+    <div class="form-group">
+      <label for="lastName">Last Name *</label>
+      <input type="text" id="lastName" name="lastName" placeholder="Botha" maxlength="80" autocomplete="family-name" required />
+      <span class="form-error" id="err-lastName">Please enter your last name.</span>
+    </div>
+  </div>
 
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" placeholder="+27 82 000 0000" maxlength="20" autocomplete="tel" pattern="^[+0-9 ()-]{6,20}$" />
-              <span class="form-error" id="err-phone">Please enter a valid phone number.</span>
-            </div>
+  <div class="form-group">
+    <label for="email">Email Address *</label>
+    <input type="email" id="email" name="email" placeholder="andrew@example.co.za" maxlength="254" autocomplete="email" required />
+    <span class="form-error" id="err-email">Please enter a valid email address.</span>
+  </div>
 
-            <div class="form-group">
-              <label for="service">Service of Interest</label>
-              <select id="service" name="service">
-                <option value="">- Select a service -</option>
-                <option>Investment Management</option>
-                <option>Financial Planning</option>
-                <option>Estate Planning</option>
-                <option>International Asset Management</option>
-                <option>Ongoing Client Advice</option>
-                <option>General Enquiry</option>
-              </select>
-            </div>
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" name="phone" placeholder="+27 (021) 000 0000" maxlength="20" autocomplete="tel" pattern="^[+0-9 ()-]{6,20}$" />
+    <span class="form-error" id="err-phone">Please enter a valid phone number.</span>
+  </div>
 
-            <div class="form-group">
-              <label for="message">Your Message *</label>
-              <textarea id="message" name="message" rows="5" maxlength="2000" placeholder="Tell us a little about your situation..." required></textarea>
-              <span class="form-error" id="err-message">Please enter a message (at least 10 characters).</span>
-            </div>
+  <div class="form-group">
+    <label for="service">Service of Interest</label>
+    <select id="service" name="service">
+      <option value="">- Select a service -</option>
+      <option>Investment Management</option>
+      <option>Financial Planning</option>
+      <option>Estate Planning</option>
+      <option>International Asset Management</option>
+      <option>Ongoing Client Advice</option>
+      <option>General Enquiry</option>
+    </select>
+  </div>
 
-            <button class="btn btn-gold" type="submit" style="width:100%;justify-content:center">
-              Send Message →
-            </button>
+  <div class="form-group">
+    <label for="message">Your Message *</label>
+    <textarea id="message" name="message" rows="5" maxlength="2000" placeholder="Tell us a little about your situation..." required></textarea>
+    <span class="form-error" id="err-message">Please enter a message (at least 10 characters).</span>
+  </div>
 
-          </form>
+  <div class="h-captcha" data-captcha="true"></div>
+
+  <button class="btn btn-gold" type="submit" style="width:100%;justify-content:center">
+    Send Message →
+  </button>
+
+</form>
 
           <div class="form-success" id="formSuccess">
             ✓ Thank you - your message has been received. A member of our team will contact you within one business day.
@@ -1989,7 +1993,7 @@
           <div>
             <div class="footer__col-title">Contact</div>
             <ul class="footer__links">
-              <li><a href="tel:+27217125410">+27 21 712 5410</a></li>
+              <li><a href="tel:+27217125410">+27 (021) 712 5410</a></li>
               <li><a href="mailto:mcarthurfps@global.co.za">mcarthurfps@global.co.za</a></li>
               <li>Tokai, Cape Town 7945</li>
             </ul>
@@ -2004,6 +2008,9 @@
   </div>
 </div>
 
+<script src="https://web3forms.com/client/script.js" async defer></script>
 <script src="js/script.js"></script>
 </body>
 </html>
+
+//https://web3forms.com/features use this for form submission and validation if needed
