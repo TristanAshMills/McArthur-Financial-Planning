@@ -1,223 +1,161 @@
 # McArthur Financial Planning
 
-## Security Audit Report
-
-This repository contains the McArthur Financial Planning Services website with a comprehensive set of security improvements implemented to address common web application vulnerabilities based on the **OWASP Top 10**.
+A secure, responsive financial planning website developed for **McArthur Financial Planning Services**. This project demonstrates modern web development practices with a strong focus on usability, accessibility, and web application security based on the **OWASP Top 10**.
 
 ---
 
-## Security Improvements
+## Overview
 
-### Fix 1 – Content Security Policy (OWASP A05)
+The website provides clients with information about McArthur Financial Planning Services, including:
 
-A strict Content Security Policy (CSP) has been implemented to significantly reduce the risk of Cross-Site Scripting (XSS) attacks.
+* Company information
+* Financial planning services
+* Client process overview
+* Contact and consultation request form
+* Mobile responsive navigation
+* Interactive user interface with smooth page transitions
 
-* Added CSP support for static deployments.
-* Uses a nonce-based approach for inline scripts and styles.
-* Replace `REPLACE_SERVER_NONCE_HERE` with a cryptographically secure, random 16-byte Base64 nonce on every server response.
-* In production, the CSP should be delivered as an **HTTP response header** rather than a meta tag.
-
----
-
-### Fixes 2–3 – Security Headers (OWASP A05)
-
-Added:
-
-* `Referrer-Policy: strict-origin-when-cross-origin`
-
-Recommended production headers:
-
-* `X-Content-Type-Options: nosniff`
-* `X-Frame-Options: DENY`
-* `Strict-Transport-Security (HSTS)`
-* `Permissions-Policy`
-
-These headers help protect against clickjacking, MIME sniffing, and unnecessary information disclosure.
+The application is built using vanilla HTML, CSS, and JavaScript without external frameworks, making it lightweight and easy to maintain.
 
 ---
 
-### Fix 5 – Subresource Integrity (OWASP A06)
+## Features
 
-Google Fonts were originally loaded from Google's CDN without Subresource Integrity (SRI).
-
-Since Google Fonts are served dynamically and cannot use SRI:
-
-* Self-hosting the font files is recommended.
-* This removes the third-party dependency.
-* Improves privacy and GDPR compliance.
+* Responsive design for desktop, tablet, and mobile devices
+* Single-page application navigation
+* Mobile hamburger menu
+* Dropdown navigation
+* Scroll reveal animations
+* Contact form validation
+* Interactive user experience
+* Clean and modern interface
 
 ---
 
-### Fix 7 – Inline Event Handlers (OWASP A03)
+## Security Enhancements
 
-All inline JavaScript event handlers such as:
+This project was audited and updated to address multiple vulnerabilities identified within the **OWASP Top 10**.
 
-```html
-onclick="showPage('home')"
+### Implemented Improvements
+
+* Strict Content Security Policy (CSP)
+* Removal of inline JavaScript event handlers
+* Secure event delegation
+* Improved input validation and sanitization
+* Protection against Cross-Site Scripting (XSS)
+* Reverse tabnabbing protection (`rel="noopener noreferrer"`)
+* Email obfuscation to reduce spam harvesting
+* Sandboxed Google Maps iframe
+* Client-side rate limiting
+* Honeypot bot protection
+* Secure page routing
+* Reduced global JavaScript scope using an IIFE
+* Improved security header recommendations
+* Service allowlist validation
+* Enhanced DOM safety using `textContent`
+
+---
+
+## Technologies Used
+
+* HTML5
+* CSS3
+* JavaScript (ES6)
+* Formspree
+* Google Maps Embed
+
+---
+
+## Project Structure
+
+```text
+McArthur-Financial-Planning/
+│
+├── index.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── script.js
+├── images/
+├── documents/
+├── README.md
+└── LICENSE
 ```
 
-were removed.
+---
 
-They have been replaced with:
+## Contact Form
 
-* `data-page`
-* `data-action`
+The contact form includes several layers of client-side protection:
 
-A single event delegation listener now handles all navigation, making the application compatible with a strict CSP.
+* Required field validation
+* Email format validation
+* Phone number validation
+* Message length validation
+* Honeypot spam detection
+* Client-side submission cooldown
+* Secure DOM updates using `textContent`
+
+> **Note:** Client-side validation improves the user experience but must always be backed by server-side validation and sanitization in production.
 
 ---
 
-### Fix 10 – Reverse Tabnabbing (OWASP A05)
+## Security Recommendations
 
-All links using:
+For production deployments, the following server-side protections are recommended:
 
-```html
-target="_blank"
+* Content Security Policy delivered via HTTP headers
+* HTTP Strict Transport Security (HSTS)
+* X-Frame-Options
+* X-Content-Type-Options
+* Permissions-Policy
+* Server-side CSRF protection
+* Server-side rate limiting
+* Logging and monitoring
+* Self-hosted web fonts
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/TristanAshMills/-McArthur-Financial-Planning.git
 ```
 
-now include:
+Open the project folder:
 
-```html
-rel="noopener noreferrer"
+```bash
+cd -McArthur-Financial-Planning
 ```
 
-This prevents malicious pages from accessing `window.opener` and redirecting the original tab.
+Launch `index.html` in your preferred browser.
 
 ---
 
-### Fix 11 – Email Address Protection (OWASP A02)
+## Future Improvements
 
-The email address is no longer stored as plain text within the HTML.
-
-Instead:
-
-* It is reconstructed at runtime using `data-*` attributes.
-* Inserted using `textContent`.
-* The `href` attribute is created with `setAttribute()`.
-
-This helps reduce automated email harvesting by spam bots.
-
----
-
-### Fix 12 – Sandboxed Google Maps iframe (OWASP A05)
-
-The embedded Google Maps iframe now uses:
-
-```html
-sandbox="allow-scripts allow-same-origin"
-```
-
-This prevents:
-
-* Form submissions
-* Popups
-* Top-level navigation
-* Pointer lock
-
-while still allowing Google Maps to function correctly.
+* Backend integration
+* Database support
+* User authentication
+* Appointment booking system
+* Financial calculators
+* Client portal
+* Dark mode
+* Automated security testing
 
 ---
 
-### Fix 13 – CSRF Protection (OWASP A01)
+## Author
 
-The contact form has been improved by:
+**Tristan Ashley Mills**
 
-* Adding a hidden honeypot (`_gotcha`) field.
-* Using JavaScript `fetch()` for submissions.
-* Detecting bot activity before sending requests.
-
-For production deployments, server-side CSRF tokens should also be implemented.
+GitHub: https://github.com/TristanAshMills
 
 ---
 
-### Fix 14 – Rate Limiting (OWASP A07)
-
-Client-side protections include:
-
-* 60-second submission cooldown.
-* Submit button disabled during requests.
-* Double-submit prevention.
-
-Production deployments should also implement server-side rate limiting, such as limiting submissions per IP address.
-
----
-
-### Fix 15 – Input Validation & Sanitization (OWASP A03)
-
-Validation has been added for every form field.
-
-Examples include:
-
-* Name validation using allowlisted characters.
-* RFC 5322-compatible email validation.
-* Phone number validation.
-* Maximum input lengths.
-* Sanitization before submission.
-* Service selection validated against an allowlist.
-
-All user-facing messages use `textContent` rather than `innerHTML`.
-
----
-
-### Fix 16 – Service Validation (OWASP A03)
-
-The service selector now uses machine-readable values rather than display text.
-
-Submitted values are validated against an allowlist before processing.
-
----
-
-### Fix 17 – Secure Navigation (OWASP A01)
-
-Page navigation now validates requested pages against an approved list:
-
-* Home
-* About
-* Services
-* Process
-* Contact
-
-Only approved page identifiers are accepted, preventing unexpected DOM manipulation.
-
----
-
-### Fix 18 – JavaScript Scope Protection
-
-The application's JavaScript is encapsulated within an Immediately Invoked Function Expression (IIFE):
-
-```javascript
-(function () {
-    'use strict';
-    // Application code
-})();
-```
-
-Benefits include:
-
-* Prevents global namespace pollution.
-* Enables JavaScript strict mode.
-* Reduces the risk of variable collisions.
-* Improves maintainability and security.
-
----
-
-## Summary
-
-The application has been strengthened against multiple categories of vulnerabilities identified in the **OWASP Top 10**, including:
-
-* Cross-Site Scripting (XSS)
-* Cross-Site Request Forgery (CSRF)
-* Reverse Tabnabbing
-* Clickjacking
-* Information Disclosure
-* DOM Injection
-* Input Validation Weaknesses
-* Brute Force Form Abuse
-* Global JavaScript Scope Pollution
-
-While these client-side improvements significantly increase the application's security, additional production safeguards—such as HTTP security headers, server-side CSRF validation, authentication, logging, and rate limiting—should also be implemented for a complete defense-in-depth strategy.
-
----
+## Copyright
 
 Copyright © 2026 Tristan Ashley Mills
 
