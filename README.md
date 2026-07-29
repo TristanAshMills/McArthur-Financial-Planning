@@ -1,72 +1,87 @@
-# McArthur Financial Planning
+<div align="center">
 
-A secure, responsive financial planning website developed for **McArthur Financial Planning Services**. This project demonstrates modern web development practices with a strong focus on usability, accessibility, and web application security based on the **OWASP Top 10**.
+# 💼 McArthur Financial Planning
+
+### Secure Financial Planning Website
+
+A secure, responsive financial planning website developed for **McArthur Financial Planning Services**.
+
+This project demonstrates modern web development practices with a strong emphasis on **security**, **accessibility**, **performance**, and **user experience**, following recommendations from the **OWASP Top 10**.
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?logo=javascript&logoColor=black)
+![Status](https://img.shields.io/badge/Status-Ongoing-blue)
+
+</div>
 
 ---
 
-## Overview
+# 📖 Overview
 
-The website provides clients with information about McArthur Financial Planning Services, including:
+McArthur Financial Planning is a responsive single-page website designed to provide clients with clear information about the company's financial services while following modern web security best practices.
+
+### The website includes:
 
 * Company information
 * Financial planning services
 * Client process overview
 * Contact and consultation request form
-* Mobile responsive navigation
-* Interactive user interface with smooth page transitions
+* Responsive navigation
+* Interactive page transitions
+* Mobile-friendly interface
 
-The application is built using vanilla HTML, CSS, and JavaScript without external frameworks, making it lightweight and easy to maintain.
-
----
-
-## Features
-
-* Responsive design for desktop, tablet, and mobile devices
-* Single-page application navigation
-* Mobile hamburger menu
-* Dropdown navigation
-* Scroll reveal animations
-* Contact form validation
-* Interactive user experience
-* Clean and modern interface
+The project is built using **HTML5**, **CSS3**, and **Vanilla JavaScript**, keeping the code lightweight, fast, and easy to maintain.
 
 ---
 
-## Security Enhancements
+# ✨ Features
 
-This project was audited and updated to address multiple vulnerabilities identified within the **OWASP Top 10**.
-
-### Implemented Improvements
-
-* Strict Content Security Policy (CSP)
-* Removal of inline JavaScript event handlers
-* Secure event delegation
-* Improved input validation and sanitization
-* Protection against Cross-Site Scripting (XSS)
-* Reverse tabnabbing protection (`rel="noopener noreferrer"`)
-* Email obfuscation to reduce spam harvesting
-* Sandboxed Google Maps iframe
-* Client-side rate limiting
-* Honeypot bot protection
-* Secure page routing
-* Reduced global JavaScript scope using an IIFE
-* Improved security header recommendations
-* Service allowlist validation
-* Enhanced DOM safety using `textContent`
+* 📱 Fully responsive design
+* 🧭 Single-page application navigation
+* 🍔 Mobile hamburger menu
+* 📂 Dropdown navigation menus
+* 🎬 Scroll reveal animations
+* 📨 Contact form validation
+* ⚡ Smooth client-side routing
+* 🎨 Clean, modern user interface
 
 ---
 
-## Technologies Used
+# 🔒 Security Enhancements
 
-* HTML5
-* CSS3
-* JavaScript (ES6)
-* Formspree
-* Google Maps Embed
+This application was audited and improved to address multiple vulnerabilities aligned with the **OWASP Top 10**.
+
+| Security Feature                       | Status |
+| -------------------------------------- | :----: |
+| Content Security Policy (CSP)          |    ✅   |
+| Secure Event Delegation                |    ✅   |
+| Input Validation & Sanitization        |    ✅   |
+| Cross-Site Scripting (XSS) Protection  |    ✅   |
+| Reverse Tabnabbing Protection          |    ✅   |
+| Email Obfuscation                      |    ✅   |
+| Sandboxed Google Maps iframe           |    ✅   |
+| Client-side Rate Limiting              |    ✅   |
+| Honeypot Bot Detection                 |    ✅   |
+| Secure Page Routing                    |    ✅   |
+| Reduced Global JavaScript Scope (IIFE) |    ✅   |
+| Security Header Recommendations        |    ✅   |
+| Service Allowlist Validation           |    ✅   |
+| Safe DOM Updates (`textContent`)       |    ✅   |
 
 ---
 
-## Project Structure
+# 🛠 Technologies Used
+
+| Frontend         | Services          |
+| ---------------- | ----------------- |
+| HTML5            | Formspree         |
+| CSS3             | Google Maps Embed |
+| JavaScript (ES6) | Google Fonts      |
+
+---
+
+# 📁 Project Structure
 
 ```text
 McArthur-Financial-Planning/
@@ -84,27 +99,27 @@ McArthur-Financial-Planning/
 
 ---
 
-## Contact Form
+# 📨 Contact Form Security
 
-The contact form includes several layers of client-side protection:
+The contact form includes several layers of client-side protection to improve security and user experience.
 
-* Required field validation
-* Email format validation
-* Phone number validation
-* Message length validation
-* Honeypot spam detection
-* Client-side submission cooldown
-* Secure DOM updates using `textContent`
+* ✅ Required field validation
+* ✅ Email format validation
+* ✅ Phone number validation
+* ✅ Message length validation
+* ✅ Honeypot spam detection
+* ✅ Client-side submission cooldown
+* ✅ Safe DOM manipulation using `textContent`
 
-> **Note:** Client-side validation improves the user experience but must always be backed by server-side validation and sanitization in production.
+> **Note:** Client-side validation improves usability but should always be complemented with server-side validation and sanitization.
 
 ---
 
-## Security Recommendations
+# 🛡 Recommended Production Security
 
 For production deployments, the following server-side protections are recommended:
 
-* Content Security Policy delivered via HTTP headers
+* HTTP Content Security Policy (CSP)
 * HTTP Strict Transport Security (HSTS)
 * X-Frame-Options
 * X-Content-Type-Options
@@ -116,7 +131,7 @@ For production deployments, the following server-side protections are recommende
 
 ---
 
-## Installation
+# 🚀 Installation
 
 Clone the repository:
 
@@ -124,38 +139,39 @@ Clone the repository:
 git clone https://github.com/TristanAshMills/-McArthur-Financial-Planning.git
 ```
 
-Open the project folder:
+Navigate into the project folder:
 
 ```bash
 cd -McArthur-Financial-Planning
 ```
 
-Launch `index.html` in your preferred browser.
+Open **index.html** in your preferred web browser.
 
 ---
 
-## Future Improvements
+# 🔮 Future Improvements
 
 * Backend integration
 * Database support
 * User authentication
 * Appointment booking system
 * Financial calculators
-* Client portal
+* Secure client portal
 * Dark mode
 * Automated security testing
+* CI/CD pipeline
 
 ---
 
-## Author
+# 👨‍💻 Author
 
 **Tristan Ashley Mills**
 
-GitHub: https://github.com/TristanAshMills
+GitHub: **https://github.com/TristanAshMills**
 
 ---
 
-## Copyright
+# 📄 Copyright
 
 Copyright © 2026 Tristan Ashley Mills
 
