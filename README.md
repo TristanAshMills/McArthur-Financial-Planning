@@ -173,8 +173,8 @@ GitHub: **https://github.com/TristanAshMills**
 
 # 📄 Copyright
 
-Copyright © 2026 Tristan Ashley Mills
+Copyright © 2026 Mc Arthur Financial Planning Services CC
 
 All Rights Reserved.
 
-This source code, documentation, and associated files are the exclusive property of Tristan Ashley Mills. Unauthorized copying, reproduction, modification, distribution, or use of this project, in whole or in part, is strictly prohibited without prior written permission.
+This source code, documentation, and associated files are the exclusive property of Mc Arthur Financial Planning Services CC. Unauthorized copying, reproduction, modification, distribution, or use of this project, in whole or in part, is strictly prohibited without prior written permission.
