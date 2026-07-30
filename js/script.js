@@ -105,13 +105,16 @@
         return;
       }
 
-      // \ hCaptcha check
+      // ─── hCaptcha check ────────────────────────────────
       var hCaptchaField = consultForm.querySelector('textarea[name=h-captcha-response]');
+      var captchaErr = document.getElementById('err-captcha');
       if (!hCaptchaField || !hCaptchaField.value) {
         e.preventDefault();
-        alert('Please complete the captcha before submitting.');
+        if (captchaErr) captchaErr.classList.add('show');
         return;
-      }
+      } else {
+        if (captchaErr) captchaErr.classList.remove('show');
+      } 
 
       var valid = true;
       var fields = [
