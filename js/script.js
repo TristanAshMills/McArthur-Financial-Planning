@@ -1,3 +1,12 @@
+/*
+ * © 2026 Mc Arthur Financial Planning Services CC.
+ * All rights reserved.
+ * This script and its source code are the property of
+ * Mc Arthur Financial Planning Services CC and may not be
+ * copied, reproduced, or distributed without permission.
+ * Developed by Tristan Ashley Mills.
+ */
+
 'use strict';
 
   // ─── PAGE ROUTING ──────────────────────────────────────────
@@ -170,3 +179,11 @@
         : 'none';
     }
   });
+/*
+ * © 2026 Mc Arthur Financial Planning Services CC.
+ * All rights reserved.
+ * This script and its source code are the property of
+ * Mc Arthur Financial Planning Services CC and may not be
+ * copied, reproduced, or distributed without permission.
+ * Developed by Tristan Ashley.
+ */
