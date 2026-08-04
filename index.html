@@ -981,19 +981,17 @@
   .contact-detail__text strong { display: block; color: var(--navy); font-size: 0.85rem; margin-bottom: 0.15rem; }
   .contact-detail__text span { font-size: 0.88rem; color: var(--grey-500); }
 
-  .map-embed {
+.map-embed {
     margin-top: 2rem;
-    border-radius: 8px;
+    width: 100%;
+    height: 450px;
     overflow: hidden;
-    border: 1px solid var(--grey-300);
-    height: 200px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     background: var(--grey-100);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--grey-500);
-    font-size: 0.85rem;
-  }
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
   .contact-form { background: var(--white); border-radius: 12px; padding: 3rem; box-shadow: 0 4px 24px rgba(13,27,42,.08); }
   .contact-form h3 { color: var(--navy); font-size: 1.8rem; margin-bottom: 0.5rem; }
@@ -1332,7 +1330,7 @@
     </div>
   </section>
 
-  <!-- Testimonials -->
+  <!-- Testimonials 
   <section class="testimonials">
     <div class="container">
       <div class="section-header reveal">
@@ -1915,7 +1913,7 @@
           </div>
 
           <div class="map-embed">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d341.77381318150725!2d18.466560874172423!3d-34.021715142406464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc4256d2f4a9a7%3A0xdb2a527932a1d390!2sunit%206%2C%201st%20Floor%2C%201%20Gabriel%20Rd%2C%20Plumstead%2C%20Cape%20Town%2C%207801!5e1!3m2!1sen!2sza!4v1785491828516!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5468.380923436298!2d18.4668426!3d-34.0217165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc4256d2be4d5b%3A0x290217b49be7d308!2sUnit%206%2C%20Gabriel%20Place%2C%201%20Gabriel%20Rd%2C%20Plumstead%2C%20Cape%20Town%2C%207801!5e1!3m2!1sen!2sza!4v1785846015927!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
         </div>
 
