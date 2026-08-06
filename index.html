@@ -820,7 +820,7 @@
   .team-card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 12px rgba(13,27,42,.07); transition: var(--transition); }
   .team-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(13,27,42,.12); }
   .team-card__photo {
-    height: 220px;
+    height: 340px;
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
     display: flex;
     align-items: center;
@@ -829,7 +829,16 @@
     font-size: 3.5rem;
     color: rgba(184,150,46,.35);
     font-weight: 600;
+    overflow: hidden;
+    position: relative;
   }
+  .team-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     
+  object-position: top center;  
+  display: block;
+}
   .team-card__info { padding: 1.5rem; }
   .team-card__name { font-family: var(--serif); font-size: 1.3rem; color: var(--navy); }
   .team-card__title { font-size: 0.78rem; color: var(--gold); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
@@ -1526,7 +1535,7 @@
             </div>
           </div>
           <div class="team-card reveal reveal-delay-1">
-            <div class="team-card__photo">AP</div>
+            <div class="team-card__photo"><img src="images//staff/Andrew Preston.jpeg" alt="Andrew Preston"></div>
             <div class="team-card__info">
               <div class="team-card__name">Andrew Preston</div>
               <div class="team-card__title">Administrator</div>
@@ -1542,7 +1551,7 @@
             </div>
           </div>
           <div class="team-card reveal reveal-delay-2">
-            <div class="team-card__photo">RB</div>
+            <div class="team-card__photo"><img src="images//staff/Richard Bougard.jpeg" alt="Richard Bougard"></div>
             <div class="team-card__info">
               <div class="team-card__name">Richard Bougard</div>
               <div class="team-card__title">Representative</div>
