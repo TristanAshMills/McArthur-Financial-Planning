@@ -9,7 +9,7 @@
 
 'use strict';
 
-  // ─── PAGE ROUTING ──────────────────────────────────────────
+  // ─── PAGE ROUTING ────────────────────────────────────────── \\
   function showPage(id) {
     var target = document.getElementById('page-' + id);
     if (!target) return;
@@ -39,7 +39,7 @@
     }
   });
 
-  // ─── MOBILE MENU ────────────────────────────────────────────
+  // ─── MOBILE MENU ──────────────────────────────────────────── \\
   var hamburgerBtn = document.getElementById('hamburger');
   if (hamburgerBtn) {
     hamburgerBtn.addEventListener('click', function () {
@@ -53,7 +53,7 @@
     if (mobileMenu) mobileMenu.classList.remove('open');
   }
 
-  // ─── DROPDOWN (POPI) ────────────────────────────────────────
+  // ─── DROPDOWN (POPI) ──────────────────────────────────────── \\
   document.addEventListener('click', function (e) {
     var toggle = e.target.closest('.dropdown-toggle');
     if (toggle) {
@@ -78,7 +78,7 @@
     });
   }
 
-  // ─── SCROLL REVEAL ──────────────────────────────────────────
+  // ─── SCROLL REVEAL ────────────────────────────────────────── \\
   function initReveal() {
     var els = document.querySelectorAll('.page.active .reveal');
     var observer = new IntersectionObserver(function (entries) {
@@ -94,7 +94,7 @@
 
   initReveal();
 
-  // ─── CONTACT FORM VALIDATION ────────────────────────────────
+  // ─── CONTACT FORM VALIDATION ──────────────────────────────── \\
   var consultForm = document.getElementById('consultForm');
   if (consultForm) {
     var lastSubmitTime = 0;
@@ -114,7 +114,7 @@
         return;
       }
 
-      // ─── hCaptcha check ────────────────────────────────
+      // ─── hCaptcha check ──────────────────────────────── \\
       var hCaptchaField = consultForm.querySelector('textarea[name=h-captcha-response]');
       var captchaErr = document.getElementById('err-captcha');
       if (!hCaptchaField || !hCaptchaField.value) {
@@ -170,7 +170,7 @@
     });
   }
 
-  // ─── NAVBAR SCROLL SHADOW ───────────────────────────────────
+  // ─── NAVBAR SCROLL SHADOW ─────────────────────────────────── \\
   window.addEventListener('scroll', function () {
     var nav = document.getElementById('navbar');
     if (nav) {
