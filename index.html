@@ -90,6 +90,10 @@
   padding: 0.5rem 0;
   z-index: 999;
 }
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  display: block;
+}
 .dropdown-menu li {
   list-style: none;
 }
@@ -1131,9 +1135,194 @@
     border: 0;
     display: block;
 }
+
+  /* ─── COOKIE / GDPR CONSENT ──────────────────────────────── */
+  .cookie-banner {
+    position: fixed;
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 2000;
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--navy);
+    border: 1px solid rgba(184,150,46,.25);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    padding: 1.75rem 2rem;
+    display: none;
+    color: var(--white);
+  }
+  .cookie-banner.show { display: block; }
+  .cookie-banner__title {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .cookie-banner__text {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 1.25rem;
+  }
+  .cookie-banner__text a { color: var(--gold-light); text-decoration: underline; }
+  .cookie-banner__actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .cookie-banner__actions .btn { font-size: 0.75rem; padding: 0.7rem 1.4rem; }
+
+  .cookie-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(13,27,42,.6);
+    backdrop-filter: blur(4px);
+    z-index: 2100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .cookie-modal-overlay.show { display: flex; }
+  .cookie-modal {
+    background: var(--white);
+    border-radius: 12px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 2.5rem;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4);
+  }
+  .cookie-modal h3 { color: var(--navy); font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .cookie-modal > p { color: var(--grey-500); font-size: 0.88rem; margin-bottom: 1.75rem; line-height: 1.65; }
+  .cookie-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(13,27,42,.08);
+  }
+  .cookie-category:last-of-type { border-bottom: none; }
+  .cookie-category__info h4 { color: var(--navy); font-size: 0.95rem; margin-bottom: 0.35rem; }
+  .cookie-category__info p { color: var(--grey-500); font-size: 0.82rem; line-height: 1.6; }
+  .cookie-toggle { position: relative; width: 42px; height: 24px; flex-shrink: 0; margin-top: 0.15rem; }
+  .cookie-toggle input { opacity: 0; width: 0; height: 0; }
+  .cookie-toggle__track {
+    position: absolute;
+    inset: 0;
+    background: var(--grey-300);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .cookie-toggle__track::before {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    left: 3px; top: 3px;
+    background: var(--white);
+    border-radius: 50%;
+    transition: var(--transition);
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  }
+  .cookie-toggle input:checked + .cookie-toggle__track { background: var(--gold); }
+  .cookie-toggle input:checked + .cookie-toggle__track::before { transform: translateX(18px); }
+  .cookie-toggle input:disabled + .cookie-toggle__track { opacity: 0.6; cursor: not-allowed; }
+  .cookie-modal__actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; }
+  .cookie-modal__actions .btn { font-size: 0.75rem; padding: 0.75rem 1.5rem; }
+  .cookie-settings-link { cursor: pointer; text-decoration: underline; }
+
+  .map-embed__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    height: 100%;
+    padding: 2rem;
+    text-align: center;
+    background: var(--grey-100);
+    color: var(--grey-500);
+    font-size: 0.85rem;
+  }
+  .form-blocked-notice {
+    display: none;
+    flex-direction: column;
+    gap: 0.4rem;
+    height: auto;
+    padding: 1.25rem;
+    text-align: left;
+    border-radius: var(--radius);
+    border: 1px dashed var(--grey-300);
+    background: var(--grey-100);
+    color: var(--grey-500);
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+  .map-embed__placeholder a,
+  .form-blocked-notice a {
+    color: var(--gold);
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    .cookie-banner { left: 1rem; right: 1rem; bottom: 1rem; padding: 1.5rem; }
+    .cookie-modal { padding: 1.75rem; }
+  }
 </style>
 </head>
 <body>
+
+<!-- ═══════════════════════════════════════════════
+     COOKIE / GDPR CONSENT
+═══════════════════════════════════════════════════ -->
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <div class="cookie-banner__title">Your Privacy</div>
+  <div class="cookie-banner__text">
+    We use necessary cookies to run this site, and functional cookies for the Google Maps embed and the hCaptcha spam check on our booking form. Nothing beyond what's needed loads until you choose. See our <a href="documents/Disclosure Document.pdf" target="_blank" rel="noopener noreferrer">POPI Disclosure</a> for details.
+  </div>
+  <div class="cookie-banner__actions">
+    <button class="btn btn-gold" id="cookieAcceptAll" type="button">Accept All</button>
+    <button class="btn btn-outline--white" id="cookieRejectAll" type="button">Reject Non-Essential</button>
+    <button class="btn btn-outline--white" id="cookieManage" type="button">Manage Preferences</button>
+  </div>
+</div>
+
+<div class="cookie-modal-overlay" id="cookieModalOverlay">
+  <div class="cookie-modal" role="dialog" aria-modal="true" aria-label="Cookie preferences">
+    <h3>Cookie Preferences</h3>
+    <p>Choose which cookies we're allowed to use. Necessary cookies keep the site working and can't be switched off. Change your choice any time using the "Cookie Preferences" link in the footer.</p>
+
+    <div class="cookie-category">
+      <div class="cookie-category__info">
+        <h4>Necessary</h4>
+        <p>Required for core site functionality, such as page navigation and remembering your cookie choice. Always active.</p>
+      </div>
+      <label class="cookie-toggle">
+        <input type="checkbox" checked disabled />
+        <span class="cookie-toggle__track"></span>
+      </label>
+    </div>
+
+    <div class="cookie-category">
+      <div class="cookie-category__info">
+        <h4>Functional</h4>
+        <p>Loads the Google Maps embed on our Contact page and the hCaptcha spam check needed to submit the booking form.</p>
+      </div>
+      <label class="cookie-toggle">
+        <input type="checkbox" id="cookieFunctionalToggle" />
+        <span class="cookie-toggle__track"></span>
+      </label>
+    </div>
+
+    <div class="cookie-modal__actions">
+      <button class="btn btn-gold" id="cookieSavePrefs" type="button">Save Preferences</button>
+      <button class="btn btn-outline" id="cookieModalAcceptAll" type="button">Accept All</button>
+    </div>
+  </div>
+</div>
 
 <!---- ═══════════════════════════════════════════════
      NAVBAR
@@ -1297,7 +1486,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="label">Why  Mc Arthur Financial Planning Services</span>
-        <h2>The Meridian Difference</h2>
+        <h2>The Mc Arthur Difference</h2>
         <p>We do things differently - and our clients feel it.</p>
       </div>
       <div class="why-grid">
@@ -1468,8 +1657,8 @@
             <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
             <li><a href="#" class="nav-link" data-page="process">Our Process</a></li>
             <li><a href="#" class="nav-link" data-page="contact">Contact Us</a></li>
-            <li><a href="/documents/Privacy Policy.pdf" target="_blank">Privacy Policy</a></li>
-            <li><a href="/documents/Our Conflict of Interest Policy.pdf" target="_blank">Conflict of Interest Policy</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#" class="cookie-settings-link">Cookie Preferences</a></li>
           </ul>
         </div>
         <div>
@@ -1626,7 +1815,7 @@
     <footer class="footer">
       <div class="container">
         <div class="footer__bottom" style="border-top:none;padding-top:0;justify-content:center">
-          <span style="color:rgba(255,255,255,.4);font-size:0.78rem">© 2026  Mc Arthur Financial Planning Services CC. Authorised FSP. <a href="#" class="nav-link" data-page="home" style="color:var(--gold)">Back to Home</a></span>
+          <span style="color:rgba(255,255,255,.4);font-size:0.78rem">© 2026  Mc Arthur Financial Planning Services CC. Authorised FSP. <a href="#" class="nav-link" data-page="home" style="color:var(--gold)">Back to Home</a> &middot; <a href="#" class="cookie-settings-link" style="color:var(--gold)">Cookie Preferences</a></span>
         </div>
       </div>
     </footer>
@@ -1665,7 +1854,7 @@
           </ul>
           <button class="btn btn-gold nav-link" style="margin-top:2rem" data-page="contact">Discuss Your Portfolio</button>
         </div>
-        <div class="service-section__visual service-section__visual--image" style="background-image:url('images/services/JSE v2.png')">
+        <div class="service-section__visual service-section__visual--image" style="background-image:url('images/services/JSE_landscape.jpg')">
         </div>
       </div>
 
@@ -1763,17 +1952,15 @@
       </div>
     </section>
 
-      <footer class="footer">
-        <div class="container">
-          <div class="footer__bottom" style="border-top:none;padding-top:0;justify-content:center">
-            <span style="color:rgba(255,255,255,.4);font-size:0.78rem">© 2026  Mc Arthur Financial Planning Services CC. Authorised FSP. <a href="#" class="nav-link" data-page="home" style="color:var(--gold)">Back to Home</a></span>
-          </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__bottom" style="border-top:none;padding-top:0;justify-content:center">
+          <span style="color:rgba(255,255,255,.4);font-size:0.78rem">© 2026  Mc Arthur Financial Planning Services CC. Authorised FSP. <a href="#" class="nav-link" data-page="home" style="color:var(--gold)">Back to Home</a> &middot; <a href="#" class="cookie-settings-link" style="color:var(--gold)">Cookie Preferences</a></span>
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
   </div>
 </div>
-
 
 
 <!-- ═══════════════════════════════════════════════
@@ -1903,7 +2090,7 @@
     <footer class="footer">
       <div class="container">
         <div class="footer__bottom" style="border-top:none;padding-top:0;justify-content:center">
-          <span style="color:rgba(255,255,255,.4);font-size:0.78rem">© 2026  Mc Arthur Financial Planning Services CC. Authorised FSP. <a href="#" class="nav-link" data-page="home" style="color:var(--gold)">Back to Home</a></span>
+          <span style="color:rgba(255,255,255,.4);font-size:0.78rem">© 2026  Mc Arthur Financial Planning Services CC. Authorised FSP. <a href="#" class="nav-link" data-page="home" style="color:var(--gold)">Back to Home</a> &middot; <a href="#" class="cookie-settings-link" style="color:var(--gold)">Cookie Preferences</a></span>
         </div>
       </div>
     </footer>
@@ -1962,14 +2149,22 @@
             </div>
           </div>
 
-          <div class="map-embed">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5468.380923436298!2d18.4668426!3d-34.0217165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc4256d2be4d5b%3A0x290217b49be7d308!2sUnit%206%2C%20Gabriel%20Place%2C%201%20Gabriel%20Rd%2C%20Plumstead%2C%20Cape%20Town%2C%207801!5e1!3m2!1sen!2sza!4v1785846015927!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <div class="map-embed" id="mapEmbed" data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5468.380923436298!2d18.4668426!3d-34.0217165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc4256d2be4d5b%3A0x290217b49be7d308!2sUnit%206%2C%20Gabriel%20Place%2C%201%20Gabriel%20Rd%2C%20Plumstead%2C%20Cape%20Town%2C%207801!5e1!3m2!1sen!2sza!4v1785846015927!5m2!1sen!2sza">
+            <div class="map-embed__placeholder">
+              <span>Map hidden until functional cookies are enabled.</span>
+              <a id="mapEnableLink">Enable functional cookies</a>
+            </div>
           </div>
         </div>
 
         <div class="contact-form reveal reveal-delay-1">
           <h3>Book a Consultation</h3>
           <p>Fill in the form below and we'll be in touch to arrange your complimentary initial meeting.</p>
+
+          <div class="form-blocked-notice" id="formBlockedNotice">
+            <span>This form needs the hCaptcha spam check to submit, which requires functional cookies.</span>
+            <a id="formBlockedEnableLink">Enable functional cookies</a>
+          </div>
 
           <form id="consultForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
 
@@ -2033,7 +2228,7 @@
             ✓ Thank you - your message has been received. A member of our team will contact you.
           </div>
 
-          <p style="font-size:0.75rem;color:var(--grey-500);margin-top:1.5rem;line-height:1.6">By submitting this form you consent to  Mc Arthur Financial Planning Services CC contacting you regarding your enquiry. Your information is handled in accordance with POPIA and will not be shared with third parties.</p>
+          <p style="font-size:0.75rem;color:var(--grey-500);margin-top:1.5rem;line-height:1.6">By submitting this form you consent to  Mc Arthur Financial Planning Services contacting you regarding your enquiry. Your information is handled in accordance with POPIA and will not be shared with third parties.</p>
         </div>
       </div>
     </section>
@@ -2045,7 +2240,7 @@
           <div>
             <div class="footer__brand-name"> Mc Arthur Financial Planning Services CC</div>
             <div class="footer__brand-tagline">Financial Planning</div>
-            <p class="footer__desc">Independent, personalised financial planning and investment management for South Africans who want to build lasting wealth with confidence.</p>
+            <p class="footer__desc">Independent financial planning and investment management, Plumstead, Cape Town.</p>
           </div>
           <div>
             <div class="footer__col-title">Services</div>
@@ -2061,8 +2256,8 @@
             <ul class="footer__links">
               <li><a href="#" class="nav-link" data-page="about">About Us</a></li>
               <li><a href="#" class="nav-link" data-page="process">Our Process</a></li>
-              <li><a href="/documents/Privacy Policy.pdf" target="_blank">Privacy Policy</a></li>
-              <li><a href="/documents/Our Conflict of Interest Policy.pdf" target="_blank">Conflict of Interest Policy</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#" class="cookie-settings-link">Cookie Preferences</a></li>
             </ul>
           </div>
           <div>
@@ -2083,8 +2278,8 @@
   </div>
 </div>
 
-<script src="https://web3forms.com/client/script.js" async defer></script>
 <script src="js/script.js?v3"></script>
+<script src="js/consent.js?v1" defer></script>
 <!-- ═══════════════════════════════════════════════
      © 2026 Mc Arthur Financial Planning Services CC.
      All rights reserved.
