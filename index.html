@@ -912,12 +912,11 @@
     position: relative;
     z-index: 1;
   }
-  .service-section__visual-icon {
-  width: 64px;
-  height: 64px;
-  color: var(--gold);
-  position: relative;
-  z-index: 1;
+.service-section__visual--image {
+  background-size: 112%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: var(--navy); 
 }
 
   /* ─── PROCESS PAGE ───────────────────────────────────────── */
@@ -1667,10 +1666,8 @@
           </ul>
           <button class="btn btn-gold nav-link" style="margin-top:2rem" data-page="contact">Discuss Your Portfolio</button>
         </div>
-<div class="service-section__visual">
-  <svg class="service-section__visual-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"></polyline><polyline points="14 7 21 7 21 14"></polyline></svg>
-  <span class="service-section__visual-label">Investment Management</span>
-</div>
+        <div class="service-section__visual service-section__visual--image" style="background-image:url('images/services/JSE_landscape.jpg')">
+        </div>
       </div>
 
       <div class="service-section service-section--reversed reveal">
